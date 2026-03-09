@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>5-HT2A NeuroAtlas — Whole Brain Mapping Resource</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07090c;
+  --surf:#0c0f15;
+  --surf2:#12161e;
+  --bdr:#1a1f2c;
+  --bdr2:#222a3a;
+  --txt:#dde2ec;
+  --txt2:#8a95af;
+  --txt3:#556178;
+  --grn:#3ecf8e;
+  --gfp:#39e55e;
+  --gfp2:#22c745;
+  --warn:#bf4567;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'Syne',sans-serif;min-height:100vh;overflow-x:hidden}
+
+/* ── BACKGROUND EFFECTS ── */
+body::before{
+  content:'';position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% -10%,rgba(57,229,94,.07),transparent),
+    radial-gradient(ellipse 40% 30% at 80% 60%,rgba(62,207,142,.04),transparent),
+    radial-gradient(ellipse 30% 20% at 10% 80%,rgba(57,229,94,.03),transparent);
+  pointer-events:none;z-index:0
+}
+.grid-bg{
+  position:fixed;inset:0;
+  background-image:linear-gradient(rgba(57,229,94,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(57,229,94,.03) 1px,transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;z-index:0
+}
+
+/* ── LAYOUT ── */
+.wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 32px}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(7,9,12,.88);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--bdr);
+  padding:14px 0;
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--gfp);flex-shrink:0;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.5)}}
+.nav-links{display:flex;gap:6px}
+.nav-link{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  color:var(--txt3);padding:6px 12px;border-radius:6px;
+  border:1px solid transparent;text-decoration:none;transition:.15s
+}
+.nav-link:hover{color:var(--gfp);border-color:rgba(57,229,94,.2)}
+.nav-link.primary{color:var(--gfp);border-color:rgba(57,229,94,.25);background:rgba(57,229,94,.06)}
+.nav-link.primary:hover{background:rgba(57,229,94,.12)}
+
+/* ── HERO ── */
+.hero{padding:90px 0 70px;text-align:center}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  color:var(--gfp);background:rgba(57,229,94,.07);
+  border:1px solid rgba(57,229,94,.2);border-radius:20px;
+  padding:5px 14px;margin-bottom:28px;
+  animation:fadeup .6s ease both
+}
+@keyframes fadeup{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.hero h1{
+  font-size:clamp(36px,6vw,68px);font-weight:800;
+  letter-spacing:-.03em;line-height:1.05;
+  animation:fadeup .6s .1s ease both
+}
+.hero h1 em{font-style:normal;color:var(--gfp)}
+.hero-sub{
+  font-family:'JetBrains Mono',monospace;font-size:12px;
+  color:var(--txt2);margin-top:18px;line-height:1.8;
+  max-width:580px;margin-left:auto;margin-right:auto;
+  animation:fadeup .6s .2s ease both
+}
+.hero-actions{
+  display:flex;justify-content:center;gap:12px;flex-wrap:wrap;
+  margin-top:36px;animation:fadeup .6s .3s ease both
+}
+.btn-primary{
+  background:var(--gfp);color:#07090c;font-family:'Syne',sans-serif;
+  font-weight:700;font-size:13px;padding:12px 24px;border-radius:10px;
+  border:none;cursor:pointer;text-decoration:none;transition:.15s;display:inline-flex;align-items:center;gap:8px
+}
+.btn-primary:hover{background:var(--gfp2);transform:translateY(-1px)}
+.btn-secondary{
+  background:transparent;color:var(--txt2);font-family:'JetBrains Mono',monospace;
+  font-size:11px;padding:12px 24px;border-radius:10px;
+  border:1px solid var(--bdr2);cursor:pointer;text-decoration:none;transition:.15s;display:inline-flex;align-items:center;gap:8px
+}
+.btn-secondary:hover{border-color:var(--gfp);color:var(--gfp)}
+
+/* ── STATS BAR ── */
+.stats-bar{
+  display:flex;justify-content:center;gap:0;
+  border:1px solid var(--bdr2);border-radius:14px;
+  background:var(--surf);overflow:hidden;
+  margin:60px 0;animation:fadeup .6s .4s ease both
+}
+.stat-item{
+  flex:1;padding:20px 24px;text-align:center;
+  border-right:1px solid var(--bdr);
+}
+.stat-item:last-child{border-right:none}
+.stat-n{font-size:26px;font-weight:800;color:var(--gfp)}
+.stat-l{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--txt3);text-transform:uppercase;letter-spacing:.12em;margin-top:3px}
+
+/* ── SECTION HEADING ── */
+.sec-head{margin-bottom:28px}
+.sec-label{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--gfp);margin-bottom:10px}
+.sec-title{font-size:26px;font-weight:700;letter-spacing:-.02em}
+.sec-sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt3);margin-top:6px}
+
+/* ── MOUSE LINE CARDS ── */
+.lines-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(460px,1fr));gap:16px;margin-bottom:80px}
+.line-card{
+  background:var(--surf);border:1px solid var(--bdr2);border-radius:16px;
+  overflow:hidden;transition:.2s;cursor:pointer;text-decoration:none;display:block;
+  animation:fadeup .6s ease both
+}
+.line-card:hover{border-color:var(--gfp);transform:translateY(-3px);box-shadow:0 8px 32px rgba(57,229,94,.08)}
+.line-card.coming{opacity:.5;cursor:default;pointer-events:none}
+.card-preview{
+  height:200px;background:#000;overflow:hidden;position:relative;
+  display:flex;align-items:center;justify-content:center
+}
+.card-preview img{width:100%;height:100%;object-fit:contain;background:#000;transition:.3s}
+.line-card:hover .card-preview img{transform:scale(1.04)}
+.card-preview-placeholder{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  color:var(--txt3);font-family:'JetBrains Mono',monospace;font-size:10px
+}
+.placeholder-icon{font-size:32px;opacity:.3}
+.card-status{
+  position:absolute;top:10px;right:10px;
+  font-family:'JetBrains Mono',monospace;font-size:8px;
+  padding:3px 9px;border-radius:4px;
+}
+.card-status.live{background:rgba(57,229,94,.15);border:1px solid rgba(57,229,94,.3);color:var(--gfp)}
+.card-status.soon{background:rgba(85,97,120,.15);border:1px solid var(--bdr2);color:var(--txt3)}
+.card-body{padding:18px 20px}
+.card-name{font-size:15px;font-weight:700;margin-bottom:4px}
+.card-construct{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gfp);margin-bottom:12px}
+.card-meta{display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;font-family:'JetBrains Mono',monospace;font-size:9px}
+.meta-k{color:var(--txt3)}
+.meta-v{color:var(--txt2)}
+.card-footer{
+  padding:12px 20px;border-top:1px solid var(--bdr);
+  display:flex;align-items:center;justify-content:space-between
+}
+.open-btn{
+  font-family:'JetBrains Mono',monospace;font-size:9px;
+  color:var(--gfp);display:flex;align-items:center;gap:5px
+}
+.card-url{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt3)}
+
+/* ── ABOUT / CITATION ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:80px}
+.about-card{background:var(--surf);border:1px solid var(--bdr2);border-radius:14px;padding:24px}
+.about-card h3{font-size:14px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.about-card p{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--txt2);line-height:1.8}
+.citation-box{
+  background:var(--surf2);border:1px solid var(--bdr2);border-radius:10px;
+  padding:14px;font-family:'JetBrains Mono',monospace;font-size:8.5px;
+  color:var(--txt2);line-height:1.8;margin-top:14px
+}
+.citation-box a{color:var(--gfp);text-decoration:none}
+.citation-box a:hover{text-decoration:underline}
+.lab-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--txt2);line-height:1.6}
+.lab-dot{width:6px;height:6px;border-radius:50%;background:var(--gfp);flex-shrink:0;margin-top:4px}
+
+/* ── HOW IT WORKS ── */
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:80px}
+.how-card{background:var(--surf);border:1px solid var(--bdr2);border-radius:12px;padding:20px}
+.how-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gfp);margin-bottom:10px}
+.how-title{font-size:13px;font-weight:700;margin-bottom:8px}
+.how-desc{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--txt3);line-height:1.7}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--bdr);padding:32px 0;
+  font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--txt3);
+}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-links{display:flex;gap:16px}
+.footer-links a{color:var(--txt3);text-decoration:none;transition:.15s}
+.footer-links a:hover{color:var(--gfp)}
+
+@media(max-width:720px){
+  .lines-grid{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr}
+  .how-grid{grid-template-columns:1fr}
+  .stats-bar{flex-wrap:wrap}
+  .stat-item{border-right:none;border-bottom:1px solid var(--bdr)}
+  .hero{padding:60px 0 50px}
+  .wrap{padding:0 18px}
+}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-inner">
+    <div class="nav-brand">
+      <span class="pulse"></span>
+      5-HT2A NeuroAtlas
+    </div>
+    <div class="nav-links">
+      <a class="nav-link" href="#lines">Mouse Lines</a>
+      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link primary" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10557740/" target="_blank">📄 Paper</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="wrap">
+  <section class="hero">
+    <div class="hero-tag">
+      <span class="pulse"></span>
+      Open Resource · Roth Lab · UNC-Chapel Hill
+    </div>
+    <h1>5-HT2A<br><em>NeuroAtlas</em></h1>
+    <p class="hero-sub">
+      Whole-brain coronal mapping of serotonin 5-HT2A receptor expression<br>
+      across multiple mouse lines · GFP fluorescence · Deep zoom viewer
+    </p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#lines">🧠 Browse Atlas</a>
+      <a class="btn-secondary" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10557740/" target="_blank">📄 Read the Paper</a>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-n">2</div>
+      <div class="stat-l">Mouse Lines</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-n" style="color:var(--gfp)">77</div>
+      <div class="stat-l">Total Sections</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-n">GFP</div>
+      <div class="stat-l">Channel</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-n">DZI</div>
+      <div class="stat-l">Deep Zoom</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-n" style="color:var(--gfp)">Free</div>
+      <div class="stat-l">Open Access</div>
+    </div>
+  </div>
+
+  <!-- MOUSE LINES -->
+  <section id="lines">
+    <div class="sec-head">
+      <div class="sec-label">// mouse lines</div>
+      <div class="sec-title">Browse by Mouse Line</div>
+      <div class="sec-sub">Click any line to open the deep zoom viewer · All images are whole-brain coronal series</div>
+    </div>
+
+    <div class="lines-grid">
+
+      <!-- Line 1 -->
+      <a class="line-card" href="https://yitingchiu-a.github.io/Htr2a-EGFP-CreERT2/" style="animation-delay:.05s">
+        <div class="card-preview">
+          <img src="https://yitingchiu-a.github.io/Htr2a-EGFP-CreERT2/Images/thumbs/TC-1_08.jpg"
+               alt="Htr2a-EGFP-CreERT2 representative section"
+               onerror="this.style.display='none'">
+          <div class="card-status live">● Live</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Htr2a-EGFP-CT-IRES-CreERT2</div>
+          <div class="card-construct">Htr2a-EGFP-CreERT2 · BAC transgenic</div>
+          <div class="card-meta">
+            <div class="meta-k">Sections</div><div class="meta-v">38 coronal</div>
+            <div class="meta-k">Sample</div><div class="meta-v">2ACxAi9 TAMII-1</div>
+            <div class="meta-k">Channel</div><div class="meta-v" style="color:var(--gfp)">GFP · EGFP-CT</div>
+            <div class="meta-k">Viewer</div><div class="meta-v">DZI deep zoom</div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="open-btn">Open Viewer →</span>
+          <span class="card-url">yitingchiu-a.github.io/Htr2a-EGFP-CreERT2</span>
+        </div>
+      </a>
+
+      <!-- Line 2 -->
+      <a class="line-card" href="https://yitingchiu-a.github.io/Htr2a-A242S-EGFP-CT/" style="animation-delay:.1s">
+        <div class="card-preview">
+          <img src="https://yitingchiu-a.github.io/Htr2a-A242S-EGFP-CT/Images/thumbs/A242S-EGFP-8.jpg"
+               alt="Htr2a-A242S-EGFP-CT representative section"
+               onerror="this.style.display='none'">
+          <div class="card-status live">● Live</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Htr2a-A242S-EGFP-CT-IRES-Cre</div>
+          <div class="card-construct">A242S knockin · EGFP-CT fusion</div>
+          <div class="card-meta">
+            <div class="meta-k">Sections</div><div class="meta-v">39 coronal</div>
+            <div class="meta-k">Sample</div><div class="meta-v">A242S-EGFP-1</div>
+            <div class="meta-k">Channel</div><div class="meta-v" style="color:var(--gfp)">GFP · EGFP-CT</div>
+            <div class="meta-k">Mutation</div><div class="meta-v" style="color:var(--gfp)">A242S knockin</div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="open-btn">Open Viewer →</span>
+          <span class="card-url">yitingchiu-a.github.io/Htr2a-A242S-EGFP-CT</span>
+        </div>
+      </a>
+
+      <!-- Placeholder Line 3 -->
+      <div class="line-card coming" style="animation-delay:.15s">
+        <div class="card-preview">
+          <div class="card-preview-placeholder">
+            <div class="placeholder-icon">🧠</div>
+            <div>Coming soon</div>
+          </div>
+          <div class="card-status soon">Coming Soon</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name" style="color:var(--txt3)">Mouse Line 3</div>
+          <div class="card-construct" style="color:var(--txt3)">In preparation</div>
+          <div class="card-meta">
+            <div class="meta-k">Status</div><div class="meta-v">Processing</div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="open-btn" style="color:var(--txt3)">Not yet available</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT + CITATION -->
+  <section id="about">
+    <div class="sec-head">
+      <div class="sec-label">// about</div>
+      <div class="sec-title">About this Resource</div>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>🔬 Research Group</h3>
+        <div class="lab-item"><div class="lab-dot"></div><div><b>Yi-Ting Chiu</b> — Lead researcher</div></div>
+        <div class="lab-item"><div class="lab-dot"></div><div><b>Bryan Roth Lab</b> — Principal Investigator</div></div>
+        <div class="lab-item"><div class="lab-dot"></div><div>Department of Pharmacology<br>UNC-Chapel Hill</div></div>
+        <div class="lab-item"><div class="lab-dot"></div><div>Olympus VS120 slide scanner<br>GFP fluorescence channel</div></div>
+      </div>
+
+      <div class="about-card">
+        <h3>📄 Citation</h3>
+        <p>If you use this atlas resource in your research, please cite:</p>
+        <div class="citation-box">
+          Chiu YT et al. <i>Molecular basis for 5-HT2A receptor allosteric modulation and internalization.</i>
+          <br><br>
+          <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10557740/" target="_blank">
+            PMC10557740 → Read full paper
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section>
+    <div class="sec-head">
+      <div class="sec-label">// how it works</div>
+      <div class="sec-title">Viewer Features</div>
+    </div>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-num">01 //</div>
+        <div class="how-title">Deep Zoom · DZI Tiles</div>
+        <div class="how-desc">Allen Brain Atlas-style tiled viewer. Scroll to zoom from whole-brain overview to single-cell resolution without lag.</div>
+      </div>
+      <div class="how-card">
+        <div class="how-num">02 //</div>
+        <div class="how-title">Section Navigation</div>
+        <div class="how-desc">Browse all coronal sections via thumbnail strip. Use arrow keys or Shift+scroll to move between sections instantly.</div>
+      </div>
+      <div class="how-card">
+        <div class="how-num">03 //</div>
+        <div class="how-title">Display Controls</div>
+        <div class="how-desc">Adjust brightness and contrast per session. Copy section-specific links to share exact views with collaborators.</div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap footer-inner">
+    <div>5-HT2A NeuroAtlas · Yi-Ting Chiu / Roth Lab · UNC-Chapel Hill · Open resource</div>
+    <div class="footer-links">
+      <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10557740/" target="_blank">Paper</a>
+      <a href="https://github.com/YiTingChiu-a" target="_blank">GitHub</a>
+      <a href="https://yitingchiu-a.github.io/Htr2a-EGFP-CreERT2/" target="_blank">Line 1</a>
+      <a href="https://yitingchiu-a.github.io/Htr2a-A242S-EGFP-CT/" target="_blank">Line 2</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
