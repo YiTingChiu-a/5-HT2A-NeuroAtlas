@@ -15,9 +15,9 @@
   --txt:#dde2ec;
   --txt2:#8a95af;
   --txt3:#556178;
-  --grn:#3ecf8e;
-  --gfp:#39e55e;
-  --gfp2:#22c745;
+  --grn:#94C47D;
+  --gfp:#94C47D;
+  --gfp2:#7aad63;
   --warn:#bf4567;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -28,14 +28,14 @@ body{background:var(--bg);color:var(--txt);font-family:'Syne',sans-serif;min-hei
 body::before{
   content:'';position:fixed;inset:0;
   background:
-    radial-gradient(ellipse 60% 40% at 50% -10%,rgba(57,229,94,.07),transparent),
-    radial-gradient(ellipse 40% 30% at 80% 60%,rgba(62,207,142,.04),transparent),
-    radial-gradient(ellipse 30% 20% at 10% 80%,rgba(57,229,94,.03),transparent);
+    radial-gradient(ellipse 60% 40% at 50% -10%,rgba(148,196,125,.07),transparent),
+    radial-gradient(ellipse 40% 30% at 80% 60%,rgba(148,196,125,.04),transparent),
+    radial-gradient(ellipse 30% 20% at 10% 80%,rgba(148,196,125,.03),transparent);
   pointer-events:none;z-index:0
 }
 .grid-bg{
   position:fixed;inset:0;
-  background-image:linear-gradient(rgba(57,229,94,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(57,229,94,.03) 1px,transparent 1px);
+  background-image:linear-gradient(rgba(148,196,125,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(148,196,125,.03) 1px,transparent 1px);
   background-size:60px 60px;
   pointer-events:none;z-index:0
 }
@@ -60,17 +60,17 @@ nav{
   color:var(--txt3);padding:6px 12px;border-radius:6px;
   border:1px solid transparent;text-decoration:none;transition:.15s
 }
-.nav-link:hover{color:var(--gfp);border-color:rgba(57,229,94,.2)}
-.nav-link.primary{color:var(--gfp);border-color:rgba(57,229,94,.25);background:rgba(57,229,94,.06)}
-.nav-link.primary:hover{background:rgba(57,229,94,.12)}
+.nav-link:hover{color:var(--gfp);border-color:rgba(148,196,125,.2)}
+.nav-link.primary{color:var(--gfp);border-color:rgba(148,196,125,.25);background:rgba(148,196,125,.06)}
+.nav-link.primary:hover{background:rgba(148,196,125,.12)}
 
 /* ── HERO ── */
 .hero{padding:90px 0 70px;text-align:center}
 .hero-tag{
   display:inline-flex;align-items:center;gap:8px;
   font-family:'JetBrains Mono',monospace;font-size:10px;
-  color:var(--gfp);background:rgba(57,229,94,.07);
-  border:1px solid rgba(57,229,94,.2);border-radius:20px;
+  color:var(--gfp);background:rgba(148,196,125,.07);
+  border:1px solid rgba(148,196,125,.2);border-radius:20px;
   padding:5px 14px;margin-bottom:28px;
   animation:fadeup .6s ease both
 }
@@ -132,7 +132,7 @@ nav{
   overflow:hidden;transition:.2s;cursor:pointer;text-decoration:none;display:block;
   animation:fadeup .6s ease both
 }
-.line-card:hover{border-color:var(--gfp);transform:translateY(-3px);box-shadow:0 8px 32px rgba(57,229,94,.08)}
+.line-card:hover{border-color:var(--gfp);transform:translateY(-3px);box-shadow:0 8px 32px rgba(148,196,125,.08)}
 .line-card.coming{opacity:.5;cursor:default;pointer-events:none}
 .card-preview{
   height:200px;background:#000;overflow:hidden;position:relative;
@@ -150,7 +150,7 @@ nav{
   font-family:'JetBrains Mono',monospace;font-size:8px;
   padding:3px 9px;border-radius:4px;
 }
-.card-status.live{background:rgba(57,229,94,.15);border:1px solid rgba(57,229,94,.3);color:var(--gfp)}
+.card-status.live{background:rgba(148,196,125,.15);border:1px solid rgba(148,196,125,.3);color:var(--gfp)}
 .card-status.soon{background:rgba(85,97,120,.15);border:1px solid var(--bdr2);color:var(--txt3)}
 .card-body{padding:18px 20px}
 .card-name{font-size:15px;font-weight:700;margin-bottom:4px}
@@ -373,7 +373,7 @@ footer{
         <h3>📄 Citation</h3>
         <p>If you use this atlas resource in your research, please cite:</p>
         <div class="citation-box">
-          Chiu YT et al. <i>Molecular basis for 5-HT2A receptor allosteric modulation and internalization.</i>
+          Chiu YT et al. <i>A suite of engineered mice for interrogating psychedelic drug actions.</i>
           <br><br>
           <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10557740/" target="_blank">
             PMC10557740 → Read full paper
