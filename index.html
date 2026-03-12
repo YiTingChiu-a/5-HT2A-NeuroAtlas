@@ -25,14 +25,124 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--txt);font-family:'Syne',sans-serif;min-height:100vh;overflow-x:hidden}
 
+<<<<<<< HEAD
 .wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 32px}
 
+=======
+/* ── BACKGROUND EFFECTS ── */
+body::before{
+  content:'';position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% -10%,rgba(85,207,26,.07),transparent),
+    radial-gradient(ellipse 40% 30% at 80% 60%,rgba(85,207,26,.04),transparent),
+    radial-gradient(ellipse 30% 20% at 10% 80%,rgba(85,207,26,.03),transparent);
+  pointer-events:none;z-index:0
+}
+.grid-bg{
+  position:fixed;inset:0;
+  background-image:linear-gradient(rgba(85,207,26,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(85,207,26,.03) 1px,transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;z-index:0
+}
+
+/* ── LAYOUT ── */
+.wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 32px}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(7,9,12,.88);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--bdr);
+  padding:14px 0;
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--gfp);flex-shrink:0;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.5)}}
+.nav-links{display:flex;gap:6px}
+.nav-link{
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  color:var(--txt3);padding:6px 12px;border-radius:6px;
+  border:1px solid transparent;text-decoration:none;transition:.15s
+}
+.nav-link:hover{color:var(--gfp);border-color:rgba(85,207,26,.2)}
+.nav-link.primary{color:var(--gfp);border-color:rgba(85,207,26,.25);background:rgba(85,207,26,.06)}
+.nav-link.primary:hover{background:rgba(85,207,26,.12)}
+
+/* ── HERO ── */
+.hero{padding:90px 0 70px;text-align:center}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;
+  color:var(--gfp);background:rgba(85,207,26,.07);
+  border:1px solid rgba(85,207,26,.2);border-radius:20px;
+  padding:5px 14px;margin-bottom:28px;
+  animation:fadeup .6s ease both
+}
+@keyframes fadeup{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.hero h1{
+  font-size:clamp(36px,6vw,68px);font-weight:800;
+  letter-spacing:-.03em;line-height:1.05;
+  animation:fadeup .6s .1s ease both
+}
+.hero h1 em{font-style:normal;color:var(--gfp)}
+.hero-sub{
+  font-family:'JetBrains Mono',monospace;font-size:12px;
+  color:var(--txt2);margin-top:18px;line-height:1.8;
+  max-width:580px;margin-left:auto;margin-right:auto;
+  animation:fadeup .6s .2s ease both
+}
+.hero-actions{
+  display:flex;justify-content:center;gap:12px;flex-wrap:wrap;
+  margin-top:36px;animation:fadeup .6s .3s ease both
+}
+.btn-primary{
+  background:var(--gfp);color:#07090c;font-family:'Syne',sans-serif;
+  font-weight:700;font-size:13px;padding:12px 24px;border-radius:10px;
+  border:none;cursor:pointer;text-decoration:none;transition:.15s;display:inline-flex;align-items:center;gap:8px
+}
+.btn-primary:hover{background:var(--gfp2);transform:translateY(-1px)}
+.btn-secondary{
+  background:transparent;color:var(--txt2);font-family:'JetBrains Mono',monospace;
+  font-size:11px;padding:12px 24px;border-radius:10px;
+  border:1px solid var(--bdr2);cursor:pointer;text-decoration:none;transition:.15s;display:inline-flex;align-items:center;gap:8px
+}
+.btn-secondary:hover{border-color:var(--gfp);color:var(--gfp)}
+
+/* ── STATS BAR ── */
+.stats-bar{
+  display:flex;justify-content:center;gap:0;
+  border:1px solid var(--bdr2);border-radius:14px;
+  background:var(--surf);overflow:hidden;
+  margin:60px 0;animation:fadeup .6s .4s ease both
+}
+.stat-item{
+  flex:1;padding:20px 24px;text-align:center;
+  border-right:1px solid var(--bdr);
+}
+.stat-item:last-child{border-right:none}
+.stat-n{font-size:26px;font-weight:800;color:var(--gfp)}
+.stat-n.blue{color:#95AAD3}
+.stat-l{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--txt3);text-transform:uppercase;letter-spacing:.12em;margin-top:3px}
+
+/* ── SECTION HEADING ── */
+.sec-head{margin-bottom:28px}
+.sec-label{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--gfp);margin-bottom:10px}
+.sec-title{font-size:26px;font-weight:700;letter-spacing:-.02em}
+.sec-sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt3);margin-top:6px}
+
+/* ── MOUSE LINE CARDS ── */
+>>>>>>> 9d155dcd715264615a725bffc9bda203e570ac6e
 .lines-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(460px,1fr));gap:16px;margin-bottom:80px}
 .line-card{
   background:var(--surf);border:1px solid var(--bdr2);border-radius:16px;
   overflow:hidden;transition:.2s;cursor:pointer;text-decoration:none;display:block;
 }
 .line-card:hover{border-color:var(--gfp);transform:translateY(-3px);box-shadow:0 8px 32px rgba(85,207,26,.08)}
+<<<<<<< HEAD
+=======
+.line-card.coming{opacity:.5;cursor:default;pointer-events:none}
+>>>>>>> 9d155dcd715264615a725bffc9bda203e570ac6e
 .card-preview{
   height:200px;background:#000;overflow:hidden;position:relative;
   display:flex;align-items:center;justify-content:center
@@ -44,6 +154,10 @@ body{background:var(--bg);color:var(--txt);font-family:'Syne',sans-serif;min-hei
   padding:3px 9px;border-radius:4px;
 }
 .card-status.live{background:rgba(85,207,26,.15);border:1px solid rgba(85,207,26,.3);color:var(--gfp)}
+<<<<<<< HEAD
+=======
+.card-status.soon{background:rgba(85,97,120,.15);border:1px solid var(--bdr2);color:var(--txt3)}
+>>>>>>> 9d155dcd715264615a725bffc9bda203e570ac6e
 .card-body{padding:18px 20px}
 .card-name{font-size:15px;font-weight:700;margin-bottom:4px}
 .card-construct{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gfp);margin-bottom:12px}
@@ -87,6 +201,7 @@ footer{
 
 <div class="wrap">
 
+<<<<<<< HEAD
 <div class="stats-bar">
 <div class="stat-item">
 <div class="stat-n">3</div>
@@ -105,6 +220,31 @@ footer{
 <div class="stat-l">Deep Zoom</div>
 </div>
 </div>
+=======
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-n">2</div>
+      <div class="stat-l">Mouse Lines</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-n" style="color:var(--gfp)">77</div>
+      <div class="stat-l">Total Sections</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-n blue">GFP</div>
+      <div class="stat-l">Channel</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-n blue">DZI</div>
+      <div class="stat-l">Deep Zoom</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-n" style="color:var(--gfp)">Free</div>
+      <div class="stat-l">Open Access</div>
+    </div>
+  </div>
+>>>>>>> 9d155dcd715264615a725bffc9bda203e570ac6e
 
 <section id="lines">
 <div class="lines-grid">
@@ -155,6 +295,7 @@ onerror="this.style.display='none'">
 </div>
 </a>
 
+<<<<<<< HEAD
 <!-- Line 3 -->
 <a class="line-card" href="https://yitingchiu-a.github.io/Htr2a-IRES-Cre/">
 <div class="card-preview">
@@ -181,6 +322,53 @@ onerror="this.style.display='none'">
 </section>
 
 </div>
+=======
+      <!-- Line 2 -->
+      <a class="line-card" href="https://yitingchiu-a.github.io/Htr2a-A242S-EGFP-CT/" style="animation-delay:.1s">
+        <div class="card-preview">
+          <img src="https://yitingchiu-a.github.io/Htr2a-A242S-EGFP-CT/Images/thumbs/A242S-EGFP-8.jpg"
+               alt="Htr2a-A242S-EGFP-CT representative section"
+               onerror="this.style.display='none'">
+          <div class="card-status live">● Live</div>
+        </div>
+        <div class="card-body">
+          <div class="card-name">Htr2a-A242S-EGFP-CT-IRES-Cre</div>
+          <div class="card-construct">A242S knockin · EGFP-CT fusion</div>
+          <div class="card-meta">
+            <div class="meta-k">Sections</div><div class="meta-v">39 coronal</div>
+            <div class="meta-k">Sample</div><div class="meta-v">A242S-EGFP-1</div>
+            <div class="meta-k">Channel</div><div class="meta-v" style="color:var(--gfp)">GFP · EGFP-CT</div>
+            <div class="meta-k">Mutation</div><div class="meta-v" style="color:var(--gfp)">A242S knockin</div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="open-btn">Open Viewer →</span>
+          <span class="card-url">yitingchiu-a.github.io/Htr2a-A242S-EGFP-CT</span>
+        </div>
+<div class="atlas-card">
+
+<h3>Htr2a-IRES-Cre</h3>
+
+<p>Knock-in Cre driver for Htr2a expressing neurons</p>
+
+<div class="atlas-meta">
+<span>P56</span>
+<span>Cre driver</span>
+</div>
+
+<a class="atlas-btn"
+href="https://yitingchiu-a.github.io/Htr2a-IRES-Cre/">
+Enter Atlas
+</a>
+
+<div class="atlas-jax">
+JAX: <a href="https://www.jax.org/strain/038935" target="_blank">038935</a>
+</div>
+
+</div>
+
+</a>
+>>>>>>> 9d155dcd715264615a725bffc9bda203e570ac6e
 
 <footer>
 <div class="wrap footer-inner">
@@ -197,3 +385,4 @@ onerror="this.style.display='none'">
 
 </body>
 </html>
+
