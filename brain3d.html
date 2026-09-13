@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>3D Whole-Brain View — Htr2a EGFP-CreERT2 — 5-HT2A NeuroAtlas</title>
+<meta name="description" content="Light-sheet whole-brain movies of the Htr2a EGFP-CreERT2 knock-in line: 3D rotation, coronal, horizontal and sagittal sweeps." />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/atlas.css">
+<style>
+.chan{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:2px 0 16px;
+  padding:11px 15px;background:var(--surf);border:1px solid var(--bdr2);border-radius:11px}
+.chan-line{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--txt2);
+  padding-right:16px;border-right:1px solid var(--bdr2)}
+.chan-line i{font-style:italic} .chan-line sup{font-size:8px}
+.chan-set{display:flex;gap:16px;flex-wrap:wrap}
+.ch{display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;
+  font-size:9.5px;color:var(--txt3)}
+.sw{width:9px;height:9px;border-radius:2px;flex:0 0 auto}
+.sw.red{background:#e0383c} .sw.grn{background:#39e55e}
+.sw.mrg{background:linear-gradient(135deg,#e0383c 0 50%,#39e55e 50% 100%)}
+
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.tab{display:inline-flex;align-items:center;gap:8px;background:var(--surf2);
+  border:1px solid var(--bdr2);color:var(--txt2);border-radius:9px;padding:10px 15px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;cursor:pointer;transition:.15s}
+.tab:hover{border-color:var(--gfp);color:var(--gfp)}
+.tab.on{border-color:var(--gfp);color:#07090c;background:var(--gfp)}
+.tab .mv{opacity:.65;font-size:8.5px}
+.tab.on .mv{opacity:.75}
+
+.player{background:var(--surf);border:1px solid var(--bdr2);border-radius:var(--r);overflow:hidden}
+.stage{background:#000;display:flex;align-items:center;justify-content:center;min-height:220px}
+.stage video{display:block;width:100%;height:auto;max-height:70vh;background:#000}
+.playerbar{padding:13px 18px;border-top:1px solid var(--bdr);display:flex;align-items:center;
+  gap:14px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--txt3)}
+.playerbar .cap{flex:1;min-width:220px;line-height:1.7}
+.playerbar .cap b{color:var(--txt2);font-weight:400}
+.dl{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--bdr2);border-radius:8px;
+  padding:8px 12px;color:var(--txt2);transition:.15s;white-space:nowrap}
+.dl:hover{border-color:var(--gfp);color:var(--gfp)}
+
+.meta-note{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--txt3);
+  line-height:1.9}
+
+.cite{background:var(--surf);border:1px solid var(--bdr2);border-radius:var(--r);
+  padding:20px 22px;border-left:3px solid var(--gfp);margin-top:22px}
+.cite-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--txt3);margin-bottom:11px}
+.cite-title{font-size:16px;font-style:italic;color:var(--txt);line-height:1.45;letter-spacing:-.01em}
+.cite-ref{margin-top:9px;font-size:13.5px;color:var(--txt2)}
+.cite-ref a{color:var(--gfp);border-bottom:1px solid rgba(57,229,94,.35)}
+.cite-ids{margin-top:9px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt3)}
+.cite-ids a{color:var(--txt2);border-bottom:1px dotted var(--bdr2)}
+.cite-ids a:hover{color:var(--gfp)}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <aside class="sidebar">
+    <div class="logo">
+      <a class="brand" href="index.html"><span class="pulse"></span>5-HT2A NeuroAtlas</a>
+      <div class="subline">Theme 01 · Brain Neuroanatomy Atlas</div>
+      <div class="monoline">3D whole-brain view · light-sheet</div>
+    </div>
+
+    <div class="ssec">Atlas themes</div>
+    <a class="sitem" href="index.html">🏠 Atlas home</a>
+    <a class="sitem on" href="neuroanatomy.html">🧠 1 · Neuroanatomy</a>
+    <a class="sitem" href="molecular.html">🔗 2 · GPCR molecular</a>
+    <a class="sitem" href="ultrastructure.html">⚡ 3 · Ultrastructure</a>
+
+    <div class="ssec">Movies</div>
+    <a class="sitem" href="#" data-jump="0">◈ S1 · 3D rotation</a>
+    <a class="sitem" href="#" data-jump="1">◈ S2 · Coronal</a>
+    <a class="sitem" href="#" data-jump="2">◈ S3 · Horizontal</a>
+    <a class="sitem" href="#" data-jump="3">◈ S4 · Sagittal</a>
+
+    <div class="spacer"></div>
+    <a class="back-link" href="neuroanatomy.html">← Back to neuroanatomy atlas</a>
+  </aside>
+
+  <main class="main">
+
+    <div class="topbar">
+      <div>
+        <div class="eyebrow">Theme 01 · <i>Htr2a</i><sup>EGFP-CreERT2</sup> × Ai9 · JAX 038934</div>
+        <div class="title">3D <em>Whole-Brain</em> View</div>
+      </div>
+    </div>
+
+    <div class="chan">
+      <div class="chan-line"><i>Htr2a</i><sup>EGFP-CreERT2</sup> × Ai9</div>
+      <div class="chan-set">
+        <span class="ch"><span class="sw red"></span>Red — tdTomato</span>
+        <span class="ch"><span class="sw grn"></span>Green — HTR2A-EGFP-CT</span>
+        <span class="ch"><span class="sw mrg"></span>Merge — tdTomato + HTR2A-EGFP-CT</span>
+      </div>
+    </div>
+
+    <div class="tabs" id="tabs"></div>
+
+    <div class="player">
+      <div class="stage">
+        <video id="mv" controls autoplay muted loop playsinline preload="metadata"></video>
+      </div>
+      <div class="playerbar">
+        <div class="cap" id="cap"></div>
+        <a class="dl" id="dl" href="#" download>⬇ Download MP4</a>
+      </div>
+    </div>
+
+    <div class="meta-note">
+      Mouse line: <i>Htr2a</i><sup>EGFP-CreERT2</sup> × Ai9 (JAX 038934) ·
+      panels left → right: tdTomato, HTR2A-EGFP-CT, merge · scale bar 200&nbsp;µm ·
+      movies are web-encoded H.264; contact the authors for the original files.
+    </div>
+
+    <div class="cite">
+      <div class="cite-label">Cite this resource</div>
+      <div class="cite-title">A suite of engineered mice for interrogating psychedelic drug actions</div>
+      <div class="cite-ref">
+        <a href="https://doi.org/10.1038/s41593-026-02375-0" target="_blank" rel="noopener"><i>Nature Neuroscience</i></a>
+        (2026) &nbsp;Chiu YT, et al.
+      </div>
+      <div class="cite-ids">
+        PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/42563032/" target="_blank" rel="noopener">42563032</a>
+        &nbsp;·&nbsp;
+        DOI: <a href="https://doi.org/10.1038/s41593-026-02375-0" target="_blank" rel="noopener">10.1038/s41593-026-02375-0</a>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+const DIR = '3d-whole-brain-view/';
+const MOVIES = [
+  {file:'movie-s1-3d.mp4',         label:'3D rotation', mv:'S1'},
+  {file:'movie-s2-coronal.mp4',    label:'Coronal',     mv:'S2'},
+  {file:'movie-s3-horizontal.mp4', label:'Horizontal',  mv:'S3'},
+  {file:'movie-s4-sagittal.mp4',   label:'Sagittal',    mv:'S4'}
+];
+
+const tabsEl = document.getElementById('tabs');
+const video  = document.getElementById('mv');
+const capEl  = document.getElementById('cap');
+const dlEl   = document.getElementById('dl');
+let current  = -1;
+
+MOVIES.forEach((m, i) => {
+  const b = document.createElement('button');
+  b.className = 'tab';
+  b.type = 'button';
+  b.innerHTML = m.label + ' <span class="mv">' + m.mv + '</span>';
+  b.addEventListener('click', () => show(i));
+  tabsEl.appendChild(b);
+});
+
+function show(i){
+  if(i === current) return;
+  current = i;
+  const m = MOVIES[i];
+  [...tabsEl.children].forEach((b, k) => b.classList.toggle('on', k === i));
+  video.src = DIR + m.file;
+  video.load();
+  video.play().catch(() => {});   /* autoplay may be blocked; controls still work */
+  capEl.innerHTML = '<b>Supplementary Movie ' + m.mv + '</b> · ' + m.label +
+    ' · <i>Htr2a</i><sup>EGFP-CreERT2</sup> × Ai9 whole brain';
+  dlEl.href = DIR + m.file;
+  dlEl.setAttribute('download', m.file);
+  if(history.replaceState) history.replaceState(null, '', '#' + m.mv.toLowerCase());
+}
+
+document.querySelectorAll('[data-jump]').forEach(a => {
+  a.addEventListener('click', e => { e.preventDefault(); show(+a.dataset.jump); });
+});
+
+/* open on the movie named in the hash, else the first */
+const want = MOVIES.findIndex(m => '#' + m.mv.toLowerCase() === location.hash.toLowerCase());
+show(want >= 0 ? want : 0);
+</script>
+</body>
+</html>

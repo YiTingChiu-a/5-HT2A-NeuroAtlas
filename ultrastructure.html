@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Ultrastructure / EM Atlas — 5-HT2A NeuroAtlas</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/atlas.css">
+<style>
+:root{--accent:#c9a86a;--accent-bg:rgba(201,168,106,.08);--accent-bdr:rgba(201,168,106,.28)}
+
+.cite{background:var(--surf);border:1px solid var(--bdr2);border-radius:var(--r);
+  padding:20px 22px;border-left:3px solid var(--accent,var(--gfp));margin-top:16px}
+.cite-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--txt3);margin-bottom:11px}
+.cite-title{font-size:16px;font-style:italic;color:var(--txt);line-height:1.45;letter-spacing:-.01em}
+.cite-ref{margin-top:9px;font-size:13.5px;color:var(--txt2)}
+.cite-ref a{color:var(--accent,var(--gfp));border-bottom:1px solid rgba(255,255,255,.22)}
+.cite-ids{margin-top:9px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt3)}
+.cite-ids a{color:var(--txt2);border-bottom:1px dotted var(--bdr2)}
+.cite-ids a:hover{color:var(--accent,var(--gfp))}
+.proto{display:inline-flex;align-items:center;gap:7px;padding:5px 11px;border-radius:999px;
+  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;
+  border:1px solid var(--accent-bdr);background:var(--accent-bg);color:var(--accent)}
+.figwrap{background:var(--surf);border:1px solid var(--bdr2);border-radius:var(--r);overflow:hidden}
+.figimg{background:#fff;display:flex;align-items:center;justify-content:center;padding:8px}
+.figimg.dark{background:#000}
+.figimg img{display:block;max-width:100%;height:auto}
+.figcap{padding:14px 18px;border-top:1px solid var(--bdr);font-family:'JetBrains Mono',monospace;
+  font-size:9.5px;color:var(--txt3);line-height:1.7}
+.lede{font-size:14.5px;color:var(--txt2);line-height:1.7;max-width:70ch;margin:0 0 18px}
+.willcarry{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}
+.wc{background:var(--surf2);border:1px solid var(--bdr);border-radius:12px;padding:15px 16px}
+.wc h4{margin:0 0 6px;font-size:13px;font-weight:700;color:var(--txt)}
+.wc p{margin:0;font-size:12.5px;color:var(--txt3);line-height:1.6}
+
+</style>
+</head>
+<body class="t-em">
+<div class="app">
+  <aside class="sidebar">
+    <div class="logo">
+      <a class="brand" href="index.html"><span class="pulse" style="background:var(--em)"></span>5-HT2A NeuroAtlas</a>
+      <div class="subline" style="color:var(--em)">Theme 03 · Ultrastructure / EM Atlas</div>
+      <div class="monoline">Ultrastructural · &lt; 10 nm</div>
+    </div>
+
+    <div class="ssec">Atlas themes</div>
+    <a class="sitem" href="index.html">🏠 Atlas home</a>
+    <a class="sitem" href="neuroanatomy.html">🧠 1 · Neuroanatomy</a>
+    <a class="sitem" href="molecular.html">🔗 2 · GPCR molecular</a>
+    <a class="sitem on" href="ultrastructure.html">⚡ 3 · Ultrastructure</a>
+
+    <div class="ssec">Method</div>
+    <div class="sitem-info">Line <span>Htr2a-A242S-APEX2</span></div>
+    <div class="sitem-info">Contrast <span>APEX2-DAB</span></div>
+    <div class="sitem-info">Imaging <span>TEM</span></div>
+    <div class="spacer"></div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <div class="eyebrow">Theme 03 · Ultrastructure</div>
+        <div class="title">Ultrastructure / <em>EM</em> Atlas</div>
+        <div class="subtitle"><i>Htr2a</i><sup>A242S-APEX2-Cre</sup> · electron-microscopic localization</div>
+      </div>
+      <span class="proto">● Prototype · preview only</span>
+    </div>
+
+    <p class="lede">
+      APEX2 fused to the receptor oxidises DAB into an electron-dense polymer that stays where the
+      enzyme is. The receptor therefore appears as dark reaction product on identifiable membranes,
+      placing it at a specific compartment of the synapse rather than somewhere in the neuropil.
+    </p>
+
+    <div class="figwrap">
+      <div class="figimg dark"><img src="assets/theme3-em.jpg"
+        alt="APEX2-DAB labelling at the synapse, transmission electron micrographs"></div>
+      <div class="figcap">
+        APEX2-DAB reaction product at synaptic membranes. Scale bars 50&nbsp;nm.
+      </div>
+    </div>
+
+    <div class="willcarry">
+      <div class="wc"><h4>Annotated fields</h4>
+        <p>Micrographs with the receptor-positive sites marked, and the markers toggleable so the
+        raw membrane can be checked.</p></div>
+      <div class="wc"><h4>Browse by compartment</h4>
+        <p>Spine, dendritic shaft, presynaptic terminal, axon, astrocytic process and soma.</p></div>
+      <div class="wc"><h4>Controls</h4>
+        <p>Cre-negative littermates processed in the same run, for background DAB deposition.</p></div>
+    </div>
+
+    <div class="cite">
+      <div class="cite-label">Cite this resource</div>
+      <div class="cite-title">A suite of engineered mice for interrogating psychedelic drug actions</div>
+      <div class="cite-ref">
+        <a href="https://doi.org/10.1038/s41593-026-02375-0" target="_blank" rel="noopener"><i>Nature Neuroscience</i></a>
+        (2026) &nbsp;Chiu YT, et al.
+      </div>
+      <div class="cite-ids">
+        PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/42563032/" target="_blank" rel="noopener">42563032</a>
+        &nbsp;·&nbsp;
+        DOI: <a href="https://doi.org/10.1038/s41593-026-02375-0" target="_blank" rel="noopener">10.1038/s41593-026-02375-0</a>
+      </div>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>
