@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Brain Neuroanatomy Atlas — 5-HT2A NeuroAtlas</title>
+<meta name="description" content="Whole-brain coronal expression maps of the 5-HT2A receptor across three Htr2a knock-in mouse lines." />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/atlas.css">
+<style>
+.lines{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:14px;margin-bottom:22px}
+.line{display:flex;flex-direction:column;background:var(--surf);border:1px solid var(--bdr2);
+  border-radius:var(--r);overflow:hidden;transition:.2s}
+.line:hover{border-color:var(--gfp);transform:translateY(-2px)}
+.line.pending:hover{border-color:var(--bdr2);transform:none}
+.line-art{height:150px;background:#000;position:relative;overflow:hidden;border-bottom:1px solid var(--bdr)}
+.line-art canvas,.line-art img{display:block;width:100%;height:100%;object-fit:contain;background:#000}
+.line-state{position:absolute;right:9px;top:9px;font-family:'JetBrains Mono',monospace;font-size:8px;
+  padding:4px 8px;border-radius:5px;background:rgba(7,9,12,.82);backdrop-filter:blur(3px);
+  border:1px solid rgba(57,229,94,.25);color:var(--gfp)}
+.line.pending .line-state{border-color:var(--bdr2);color:var(--txt3)}
+.line-body{padding:16px 17px 17px;display:flex;flex-direction:column;flex:1}
+.line-name{font-size:16px;font-weight:700;letter-spacing:-.01em}
+.line-name i{font-style:italic}
+.line-name sup{font-size:9.5px;color:var(--gfp)}
+.line-jax{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--txt3);margin-top:5px}
+.line-jax a{color:var(--txt2);border-bottom:1px dotted var(--bdr2)}
+.line-jax a:hover{color:var(--gfp)}
+.line-desc{font-size:12.5px;color:var(--txt2);line-height:1.6;margin:12px 0 0}
+.line-kv{margin-top:13px;display:grid;grid-template-columns:auto 1fr;gap:5px 10px;
+  font-family:'JetBrains Mono',monospace;font-size:9px}
+.line-kv .k{color:var(--txt3)} .line-kv .v{color:var(--txt2);text-align:right}
+.line-actions{margin-top:auto;padding-top:15px;display:flex;gap:7px;flex-wrap:wrap}
+.line .btn.primary{border-color:rgba(57,229,94,.28);background:rgba(57,229,94,.08);color:var(--gfp)}
+.line .btn.primary:hover{background:var(--gfp);color:#07090c;border-color:var(--gfp)}
+.line .btn[disabled]{opacity:.4;cursor:not-allowed}
+.line .btn[disabled]:hover{border-color:var(--bdr2);color:var(--txt2)}
+
+.howto{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;padding:16px 18px}
+.step{background:var(--surf2);border:1px solid var(--bdr);border-radius:11px;padding:14px 15px}
+.step .num{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gfp);letter-spacing:.1em}
+.step h4{margin:8px 0 6px;font-size:13px;font-weight:700}
+.step p{margin:0;font-size:12px;color:var(--txt2);line-height:1.6}
+.step code{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gfp);
+  background:rgba(57,229,94,.07);padding:1px 5px;border-radius:4px}
+
+.cite{background:var(--surf);border:1px solid var(--bdr2);border-radius:var(--r);
+  padding:20px 22px;border-left:3px solid var(--gfp)}
+.cite-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--txt3);margin-bottom:11px}
+.cite-title{font-size:16px;font-style:italic;color:var(--txt);line-height:1.45;letter-spacing:-.01em}
+.cite-ref{margin-top:9px;font-size:13.5px;color:var(--txt2)}
+.cite-ref a{color:var(--gfp);border-bottom:1px solid rgba(57,229,94,.35)}
+.cite-ref a:hover{border-bottom-color:var(--gfp)}
+.cite-ids{margin-top:9px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt3)}
+.cite-ids a{color:var(--txt2);border-bottom:1px dotted var(--bdr2)}
+.cite-ids a:hover{color:var(--gfp);border-bottom-color:var(--gfp)}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <aside class="sidebar">
+    <div class="logo">
+      <a class="brand" href="https://yitingchiu-a.github.io/5-HT2A-NeuroAtlas/"><span class="pulse"></span>5-HT2A NeuroAtlas</a>
+      <div class="subline">Theme 01 · Brain Neuroanatomy Atlas</div>
+      <div class="monoline">Mesoscale / microscale · mm — µm</div>
+    </div>
+
+    <div class="ssec">Atlas themes</div>
+    <a class="sitem" href="https://yitingchiu-a.github.io/5-HT2A-NeuroAtlas/">🏠 Atlas home</a>
+    <a class="sitem on" href="neuroanatomy.html">🧠 1 · Neuroanatomy</a>
+    <a class="sitem" href="molecular.html">🔗 2 · GPCR molecular</a>
+    <a class="sitem" href="ultrastructure.html">⚡ 3 · Ultrastructure</a>
+
+    <div class="ssec">Mouse lines</div>
+    <div class="sitem-info">EGFP-CreERT2 <span>JAX 038934</span></div>
+    <div class="sitem-info">Htr2a-Cre <span>JAX 038935</span></div>
+    <div class="sitem-info">A242S-EGFP-Cre <span>JAX 038936</span></div>
+
+    <div class="spacer"></div>
+  </aside>
+
+  <main class="main">
+
+    <div class="topbar">
+      <div>
+        <div class="eyebrow">Theme 01 · Mesoscale / microscale</div>
+        <div class="title">Brain <em>Neuroanatomy</em> Atlas</div>
+        <div class="subtitle">
+          Whole-brain coronal series from three <i>Htr2a</i> knock-in lines · deep-zoom viewer ·
+          per-section metadata · full-resolution downloads
+        </div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="n" style="color:var(--gfp)" id="statLines">3</div><div class="l">Mouse lines</div></div>
+      <div class="stat"><div class="n" style="color:var(--gfp)" id="statSections">—</div><div class="l">Coronal sections</div></div>
+      <div class="stat"><div class="n" id="statLive">—</div><div class="l">Viewers live</div></div>
+      <div class="stat"><div class="n">DZI</div><div class="l">Tile format</div></div>
+    </div>
+
+    <div class="lines" id="lines"></div>
+
+    <div class="cite">
+      <div class="cite-label">Cite this resource</div>
+      <div class="cite-title">A suite of engineered mice for interrogating psychedelic drug actions</div>
+      <div class="cite-ref">
+        <a href="https://doi.org/10.1038/s41593-026-02375-0" target="_blank" rel="noopener"><i>Nature Neuroscience</i></a>
+        (2026) &nbsp;Chiu YT, et al.
+      </div>
+      <div class="cite-ids">
+        PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/42563032/" target="_blank" rel="noopener">42563032</a>
+        &nbsp;·&nbsp;
+        DOI: <a href="https://doi.org/10.1038/s41593-026-02375-0" target="_blank" rel="noopener">10.1038/s41593-026-02375-0</a>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+/* ============================================================
+   Edit this array to add lines or flip one live.
+   status: 'live'  → card links to the viewer
+           'soon'  → card is shown greyed, no link
+   ============================================================ */
+const LINES = [
+  {
+    id: 'egfp-creert2',
+    preview: 'https://yitingchiu-a.github.io/Htr2a-EGFP-CreERT2/Images/thumbs/TC-1_01.jpg',
+    name: 'Htr2a', sup: 'EGFP-CreERT2',
+    repo: 'Htr2a-EGFP-CreERT2',
+    url: 'https://yitingchiu-a.github.io/Htr2a-EGFP-CreERT2/',
+    jax: '038934',
+    sections: 38,
+    sample: '2ACxAi9 TAMII-1',
+    channel: 'GFP only',
+    scanner: 'Olympus VS120',
+    status: 'live',
+    desc: 'Tamoxifen-inducible CreERT2 driver knocked into the Htr2a locus. Temporal control means labelling reports cells expressing Htr2a at the time of induction, rather than any cell with a developmental history of expression.'
+  },
+  {
+    id: 'ires-cre',
+    preview: 'https://yitingchiu-a.github.io/Htr2a-IRES-Cre/Images/thumbs/2A-KI-1.jpg',
+    name: 'Htr2a', sup: 'Cre',
+    repo: 'Htr2a-IRES-Cre',
+    url: 'https://yitingchiu-a.github.io/Htr2a-IRES-Cre/',
+    jax: '038935',
+    sections: 37,
+    sample: '2A-KI',
+    channel: 'Fluorescence',
+    scanner: 'Olympus VS200',
+    status: 'live',
+    desc: 'Constitutive IRES-Cre knock-in giving the broadest recombination map of the Htr2a locus. The reference line for cumulative Htr2a expression across the whole brain.'
+  },
+  {
+    id: 'a242s-egfp',
+    preview: 'https://yitingchiu-a.github.io/Htr2a-A242S-EGFP-CT/Images/thumbs/A242S-EGFP-1.jpg',
+    name: 'Htr2a', sup: 'A242S-EGFP-Cre',
+    repo: 'Htr2a-A242S-EGFP-CT',
+    url: 'https://yitingchiu-a.github.io/Htr2a-A242S-EGFP-CT/',
+    jax: '038936',
+    sections: 39,
+    sample: 'A242S-EGFP-1',
+    channel: 'GFP only',
+    scanner: 'Olympus VS200',
+    status: 'live',
+    desc: 'The A242S knock-in carries a C-terminal EGFP tag on the receptor itself, so signal reports receptor protein localization rather than promoter activity — the anatomical anchor for the molecular and ultrastructure themes.'
+  }
+];
+
+/* ---------- render ---------- */
+const wrap = document.getElementById('lines');
+LINES.forEach((L, i) => {
+  const live = L.status === 'live';
+  const el = document.createElement(live ? 'a' : 'div');
+  el.className = 'line' + (live ? '' : ' pending');
+  if(live){ el.href = L.url; el.target = '_blank'; el.rel = 'noopener'; }
+
+  el.innerHTML = `
+    <div class="line-art">
+      <img id="art-${L.id}" src="${L.preview}" alt="${L.repo} first coronal section" loading="lazy">
+      <div class="line-state">${live ? '● viewer live' : '○ in preparation'}</div>
+    </div>
+    <div class="line-body">
+      <div class="line-name"><i>${L.name}</i><sup>${L.sup}</sup></div>
+      <div class="line-jax">JAX
+        <a href="https://www.jax.org/strain/${L.jax}" target="_blank" rel="noopener">${L.jax}</a>
+        · ${L.repo}</div>
+      <div class="line-actions">
+        ${live
+          ? `<span class="btn primary">Open viewer →</span>
+             <span class="btn" onclick="event.preventDefault();event.stopPropagation();window.open('${L.url}?view=grid','_blank')">Section grid</span>`
+          : `<span class="btn" disabled>Viewer in preparation</span>`}
+      </div>
+    </div>`;
+  wrap.appendChild(el);
+});
+
+/* ---------- stats ---------- */
+document.getElementById('statLines').textContent = LINES.length;
+document.getElementById('statSections').textContent = LINES.reduce((a,l)=>a+l.sections,0);
+document.getElementById('statLive').textContent =
+  LINES.filter(l=>l.status==='live').length + ' / ' + LINES.length;
+
+/* ---------- card previews: real thumbnail if reachable, else generated ---------- */
+LINES.forEach((L, i) => {
+  const im = document.getElementById('art-' + L.id);
+  if(!im) return;
+  // if the published thumbnail can't be reached, fall back to a drawn placeholder
+  im.onerror = () => {
+    const cv = document.createElement('canvas');
+    cv.width = 520; cv.height = 300; cv.id = im.id;
+    im.replaceWith(cv);
+    drawSectionStrip(cv, i, L.status === 'live');
+  };
+});
+
+function drawSectionStrip(cv, salt, bright){
+  const g = cv.getContext('2d'), W = cv.width, H = cv.height;
+  g.fillStyle = '#000'; g.fillRect(0,0,W,H);
+  let seed = 13 + salt*977;
+  const rnd = () => (seed = (seed*1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
+  const cols = 3, cw = W/cols;
+  for(let c=0;c<cols;c++){
+    const cx = c*cw + cw/2, cy = H/2;
+    const t = c/(cols-1);
+    const rx = cw*0.40*(0.58+0.42*Math.sin(Math.PI*(0.22+0.68*t)));
+    const ry = H*0.33;
+    const a = bright ? 1 : 0.32;
+    const grd = g.createRadialGradient(cx,cy-ry*0.3,ry*0.08,cx,cy,rx*1.3);
+    grd.addColorStop(0,   `rgba(90,245,120,${0.88*a})`);
+    grd.addColorStop(0.40,`rgba(40,195,85,${0.42*a})`);
+    grd.addColorStop(1,   `rgba(10,60,25,${0.03*a})`);
+    g.fillStyle = grd;
+    g.beginPath();
+    g.ellipse(cx-rx*0.40,cy,rx*0.56,ry,0,0,Math.PI*2);
+    g.ellipse(cx+rx*0.40,cy,rx*0.56,ry,0,0,Math.PI*2);
+    g.fill();
+    // scattered labelled cells
+    g.fillStyle = `rgba(160,255,180,${0.55*a})`;
+    for(let k=0;k<70;k++){
+      const ang = rnd()*Math.PI*2, rr = Math.pow(rnd(),0.5);
+      const side = rnd()<0.5 ? -1 : 1;
+      const x = cx + side*rx*0.40 + Math.cos(ang)*rx*0.5*rr;
+      const y = cy + Math.sin(ang)*ry*0.86*rr;
+      g.beginPath(); g.arc(x,y,0.7+rnd()*1.1,0,Math.PI*2); g.fill();
+    }
+    g.strokeStyle = `rgba(120,255,150,${0.26*a})`; g.lineWidth = 1;
+    g.beginPath();
+    g.ellipse(cx-rx*0.40,cy,rx*0.51,ry*0.91,0,Math.PI*0.95,Math.PI*2.05);
+    g.ellipse(cx+rx*0.40,cy,rx*0.51,ry*0.91,0,Math.PI*0.95,Math.PI*2.05);
+    g.stroke();
+  }
+}
+</script>
+</body>
+</html>
