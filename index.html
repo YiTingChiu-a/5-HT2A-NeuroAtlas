@@ -3,25 +3,166 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-<title>5-HT2A NeuroAtlas</title>
-<!-- The atlas entry point is the Brain Neuroanatomy Atlas page.
-     Anyone landing on the site root is sent straight there. -->
-<meta http-equiv="refresh" content="0; url=neuroanatomy.html">
-<link rel="canonical" href="https://yitingchiu-a.github.io/5-HT2A-NeuroAtlas/neuroanatomy.html">
+<title>5-HT2A NeuroAtlas — a spatial atlas of the 5-HT2A receptor</title>
+<meta name="description" content="A multiscale spatial atlas of the 5-HT2A receptor: whole-brain neuroanatomy, proximity proteome, and synaptic ultrastructure." />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/atlas.css">
 <style>
-  html,body{margin:0;padding:0;height:100%;background:#07090c;color:#8a95af;
-    font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px}
-  .wrap{height:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px}
-  a{color:#39e55e}
+.lines{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:14px;margin-bottom:22px}
+.line{display:flex;flex-direction:column;background:var(--surf);border:1px solid var(--bdr2);
+  border-radius:var(--r);overflow:hidden;transition:.2s;--a:var(--gfp)}
+.line:hover{border-color:var(--a);transform:translateY(-2px)}
+.line-art{height:150px;background:#000;position:relative;overflow:hidden;border-bottom:1px solid var(--bdr)}
+.line-art img{display:block;width:100%;height:100%;object-fit:contain;background:#000}
+.line-art.light,.line-art.light img{background:#fff}
+.line-art.fill img{object-fit:cover;object-position:50% 40%}
+.line-state{position:absolute;right:9px;top:9px;font-family:'JetBrains Mono',monospace;font-size:8px;
+  padding:4px 8px;border-radius:5px;background:rgba(7,9,12,.82);backdrop-filter:blur(3px);
+  border:1px solid var(--bdr2);color:var(--a)}
+.line-body{padding:16px 17px 17px;display:flex;flex-direction:column;flex:1}
+.line-name{font-size:16px;font-weight:700;letter-spacing:-.01em}
+.line-num{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--a);margin-bottom:7px}
+.line-jax{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--txt3);margin-top:5px}
+.line-jax i{font-style:italic} .line-jax sup{font-size:7.5px}
+.line-desc{font-size:12.5px;color:var(--txt2);line-height:1.6;margin:12px 0 0}
+.line-desc i{font-style:italic}
+.line-actions{margin-top:auto;padding-top:15px;display:flex;gap:7px;flex-wrap:wrap}
+.line .btn.primary{border-color:var(--bdr2);background:rgba(255,255,255,.02);color:var(--a)}
+.line:hover .btn.primary{background:var(--a);color:#07090c;border-color:var(--a)}
+
+.cite{background:var(--surf);border:1px solid var(--bdr2);border-radius:var(--r);
+  padding:20px 22px;border-left:3px solid var(--gfp)}
+.cite-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--txt3);margin-bottom:11px}
+.cite-title{font-size:16px;font-style:italic;color:var(--txt);line-height:1.45;letter-spacing:-.01em}
+.cite-ref{margin-top:9px;font-size:13.5px;color:var(--txt2)}
+.cite-ref a{color:var(--gfp);border-bottom:1px solid rgba(57,229,94,.35)}
+.cite-ref a:hover{border-bottom-color:var(--gfp)}
+.cite-ids{margin-top:9px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt3)}
+.cite-ids a{color:var(--txt2);border-bottom:1px dotted var(--bdr2)}
+.cite-ids a:hover{color:var(--gfp);border-bottom-color:var(--gfp)}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <div>
-      Opening the 5-HT2A NeuroAtlas…<br><br>
-      <a href="neuroanatomy.html">Continue to the Brain Neuroanatomy Atlas</a>
+<div class="app">
+
+  <aside class="sidebar">
+    <div class="logo">
+      <a class="brand" href="index.html"><span class="pulse"></span>5-HT2A NeuroAtlas</a>
+      <div class="subline">A spatial atlas of the 5-HT2A receptor</div>
+      <div class="monoline">Mesoscale → nanoscale → ultrastructure</div>
     </div>
-  </div>
-  <script>location.replace('neuroanatomy.html');</script>
+
+    <div class="ssec">Atlas themes</div>
+    <a class="sitem on" href="index.html">🏠 Atlas home</a>
+    <a class="sitem" href="neuroanatomy.html">🧠 1 · Neuroanatomy</a>
+    <a class="sitem" href="molecular.html">🔗 2 · GPCR molecular</a>
+    <a class="sitem" href="ultrastructure.html">⚡ 3 · Ultrastructure</a>
+
+    <div class="ssec">Mouse lines</div>
+    <div class="sitem-info">EGFP-CreERT2 <span>JAX 038934</span></div>
+    <div class="sitem-info">Htr2a-Cre <span>JAX 038935</span></div>
+    <div class="sitem-info">A242S-EGFP-Cre <span>JAX 038936</span></div>
+    <div class="sitem-info">A242S-TurboID <span>in house</span></div>
+    <div class="sitem-info">A242S-APEX2 <span>in house</span></div>
+
+    <div class="spacer"></div>
+  </aside>
+
+  <main class="main">
+
+    <div class="topbar">
+      <div>
+        <div class="eyebrow">Spatial atlas · Htr2a / 5-HT2A receptor</div>
+        <div class="title">5-HT2A <em>NeuroAtlas</em></div>
+        <div class="subtitle">
+          One receptor across three scales · whole-brain neuroanatomy · <i>in vivo</i> proximity
+          proteome · synaptic ultrastructure · from a matched set of knock-in mouse lines
+        </div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="n" style="color:var(--gfp)">3</div><div class="l">Atlas themes</div></div>
+      <div class="stat"><div class="n" style="color:var(--gfp)">5</div><div class="l">Mouse lines</div></div>
+      <div class="stat"><div class="n">3 / 3</div><div class="l">Viewers live</div></div>
+      <div class="stat"><div class="n">mm → nm</div><div class="l">Spatial range</div></div>
+    </div>
+
+    <div class="lines">
+
+      <a class="line" href="neuroanatomy.html" style="--a:#39e55e">
+        <div class="line-art">
+          <img src="https://yitingchiu-a.github.io/Htr2a-EGFP-CreERT2/Images/thumbs/TC-1_01.jpg"
+               alt="Coronal section, GFP channel" loading="eager">
+          <div class="line-state">● 3 viewers live</div>
+        </div>
+        <div class="line-body">
+          <div class="line-num">Theme 01 · Mesoscale / microscale</div>
+          <div class="line-name">Brain Neuroanatomy Atlas</div>
+          <div class="line-jax"><i>Htr2a</i><sup>EGFP-CreERT2</sup> · <i>Htr2a</i><sup>Cre</sup> · <i>Htr2a</i><sup>A242S-EGFP-Cre</sup></div>
+          <div class="line-desc">Whole-brain coronal series from three knock-in lines, served as
+            deep-zoom pyramids — from the whole section down to single labelled cells.</div>
+          <div class="line-actions">
+            <span class="btn primary">Open neuroanatomy atlas →</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="line" href="molecular.html" style="--a:#6ba8ff">
+        <div class="line-art light fill">
+          <img src="assets/theme2-card.jpg"
+               alt="5-HT2A proximity protein network, coloured by functional cluster" loading="eager">
+          <div class="line-state">○ prototype</div>
+        </div>
+        <div class="line-body">
+          <div class="line-num">Theme 02 · Nanoscale</div>
+          <div class="line-name">GPCR Molecular Atlas</div>
+          <div class="line-jax"><i>Htr2a</i><sup>A242S-TurboID-Cre</sup> · TurboID proximity labelling</div>
+          <div class="line-desc">The <i>in vivo</i> proximity interactome of the receptor — core
+            cluster, drug-regulated cluster and the full proximity network.</div>
+          <div class="line-actions">
+            <span class="btn primary">View molecular atlas →</span>
+          </div>
+        </div>
+      </a>
+
+      <a class="line" href="ultrastructure.html" style="--a:#c9a86a">
+        <div class="line-art fill">
+          <img src="assets/theme3-em.jpg"
+               alt="APEX2-DAB labelling at the synapse, transmission electron micrograph" loading="eager">
+          <div class="line-state">○ prototype</div>
+        </div>
+        <div class="line-body">
+          <div class="line-num">Theme 03 · Ultrastructure</div>
+          <div class="line-name">Ultrastructure / EM Atlas</div>
+          <div class="line-jax"><i>Htr2a</i><sup>A242S-APEX2-Cre</sup> · APEX2-DAB · TEM</div>
+          <div class="line-desc">APEX2-driven DAB deposition places the receptor on identifiable
+            membranes in the electron micrograph, at the scale of the synapse itself.</div>
+          <div class="line-actions">
+            <span class="btn primary">View ultrastructure atlas →</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="cite">
+      <div class="cite-label">Cite this resource</div>
+      <div class="cite-title">A suite of engineered mice for interrogating psychedelic drug actions</div>
+      <div class="cite-ref">
+        <a href="https://doi.org/10.1038/s41593-026-02375-0" target="_blank" rel="noopener"><i>Nature Neuroscience</i></a>
+        (2026) &nbsp;Chiu YT, et al.
+      </div>
+      <div class="cite-ids">
+        PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/42563032/" target="_blank" rel="noopener">42563032</a>
+        &nbsp;·&nbsp;
+        DOI: <a href="https://doi.org/10.1038/s41593-026-02375-0" target="_blank" rel="noopener">10.1038/s41593-026-02375-0</a>
+      </div>
+    </div>
+
+  </main>
+</div>
 </body>
 </html>
