@@ -23,25 +23,22 @@
 .line-name{font-size:16px;font-weight:700;letter-spacing:-.01em}
 .line-num{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--a);margin-bottom:7px}
-.line-jax{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--txt3);margin-top:5px}
-.line-jax i{font-style:italic} .line-jax sup{font-size:7.5px}
+.line-jax{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt2);margin-top:6px;
+  line-height:1.6}
+.line-jax i{font-style:italic} .line-jax sup{font-size:8.5px}
+
+/* the sidebar mouse-line rows read too faint at this size */
+.sidebar .sitem-info{font-size:9.5px;color:var(--txt2)}
+.sidebar .sitem-info span{color:var(--txt)}
+.sidebar .sitem-info b{font-weight:400;white-space:nowrap}
+.sidebar .sitem-info i{font-style:italic}
+.sidebar .sitem-info sup{font-size:7.5px;letter-spacing:.01em}
 .line-desc{font-size:12.5px;color:var(--txt2);line-height:1.6;margin:12px 0 0}
 .line-desc i{font-style:italic}
 .line-actions{margin-top:auto;padding-top:15px;display:flex;gap:7px;flex-wrap:wrap}
 .line .btn.primary{border-color:var(--bdr2);background:rgba(255,255,255,.02);color:var(--a)}
 .line:hover .btn.primary{background:var(--a);color:#07090c;border-color:var(--a)}
 
-.cite{background:var(--surf);border:1px solid var(--bdr2);border-radius:var(--r);
-  padding:20px 22px;border-left:3px solid var(--gfp)}
-.cite-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--txt3);margin-bottom:11px}
-.cite-title{font-size:16px;font-style:italic;color:var(--txt);line-height:1.45;letter-spacing:-.01em}
-.cite-ref{margin-top:9px;font-size:13.5px;color:var(--txt2)}
-.cite-ref a{color:var(--gfp);border-bottom:1px solid rgba(57,229,94,.35)}
-.cite-ref a:hover{border-bottom-color:var(--gfp)}
-.cite-ids{margin-top:9px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt3)}
-.cite-ids a{color:var(--txt2);border-bottom:1px dotted var(--bdr2)}
-.cite-ids a:hover{color:var(--gfp);border-bottom-color:var(--gfp)}
 </style>
 </head>
 <body>
@@ -51,7 +48,6 @@
     <div class="logo">
       <a class="brand" href="index.html"><span class="pulse"></span>5-HT2A NeuroAtlas</a>
       <div class="subline">A spatial atlas of the 5-HT2A receptor</div>
-      <div class="monoline">Mesoscale → nanoscale → ultrastructure</div>
     </div>
 
     <div class="ssec">Atlas themes</div>
@@ -61,11 +57,11 @@
     <a class="sitem" href="ultrastructure.html">⚡ 3 · Ultrastructure</a>
 
     <div class="ssec">Mouse lines</div>
-    <div class="sitem-info">EGFP-CreERT2 <span>JAX 038934</span></div>
-    <div class="sitem-info">Htr2a-Cre <span>JAX 038935</span></div>
-    <div class="sitem-info">A242S-EGFP-Cre <span>JAX 038936</span></div>
-    <div class="sitem-info">A242S-TurboID <span>in house</span></div>
-    <div class="sitem-info">A242S-APEX2 <span>in house</span></div>
+    <div class="sitem-info"><b><i>Htr2a</i><sup>EGFP-CreERT2</sup></b> <span>JAX 038934</span></div>
+    <div class="sitem-info"><b><i>Htr2a</i><sup>Cre</sup></b> <span>JAX 038935</span></div>
+    <div class="sitem-info"><b><i>Htr2a</i><sup>A242S-EGFP-Cre</sup></b> <span>JAX 038936</span></div>
+    <div class="sitem-info"><b><i>Htr2a</i><sup>A242S-TurboID-Cre</sup></b> <span>in house</span></div>
+    <div class="sitem-info"><b><i>Htr2a</i><sup>A242S-APEX2-Cre</sup></b> <span>in house</span></div>
 
     <div class="spacer"></div>
   </aside>
@@ -120,8 +116,8 @@
           <div class="line-num">Theme 02 · Nanoscale</div>
           <div class="line-name">GPCR Molecular Atlas</div>
           <div class="line-jax"><i>Htr2a</i><sup>A242S-TurboID-Cre</sup> · TurboID proximity labelling</div>
-          <div class="line-desc">The <i>in vivo</i> proximity interactome of the receptor — core
-            cluster, drug-regulated cluster and the full proximity network.</div>
+          <div class="line-desc">The <i>in vivo</i> proximity protein network of 5-HT2A receptors:
+            core cluster; drug-regulated cluster.</div>
           <div class="line-actions">
             <span class="btn primary">View molecular atlas →</span>
           </div>
@@ -148,19 +144,6 @@
 
     </div>
 
-    <div class="cite">
-      <div class="cite-label">Cite this resource</div>
-      <div class="cite-title">A suite of engineered mice for interrogating psychedelic drug actions</div>
-      <div class="cite-ref">
-        <a href="https://doi.org/10.1038/s41593-026-02375-0" target="_blank" rel="noopener"><i>Nature Neuroscience</i></a>
-        (2026) &nbsp;Chiu YT, et al.
-      </div>
-      <div class="cite-ids">
-        PMID: <a href="https://pubmed.ncbi.nlm.nih.gov/42563032/" target="_blank" rel="noopener">42563032</a>
-        &nbsp;·&nbsp;
-        DOI: <a href="https://doi.org/10.1038/s41593-026-02375-0" target="_blank" rel="noopener">10.1038/s41593-026-02375-0</a>
-      </div>
-    </div>
 
   </main>
 </div>

@@ -6,7 +6,8 @@
 :root{
   --bg:#07090c; --surf:#0c0f15; --surf2:#12161e; --surf3:#171c26;
   --bdr:#1a1f2c; --bdr2:#222a3a;
-  --txt:#dde2ec; --txt2:#8a95af; --txt3:#556178;
+  /* text tiers — raised for legibility on the dark ground */
+  --txt:#eef1f7; --txt2:#c3ccdc; --txt3:#97a3ba;
 
   --grn:#3ecf8e;        /* platform accent */
   --gfp:#39e55e;        /* theme 1 — neuroanatomy / fluorescence */

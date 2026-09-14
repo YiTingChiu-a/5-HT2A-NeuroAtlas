@@ -8,6 +8,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/atlas.css">
 <style>
+.sidebar .sitem-info{font-size:9.5px;color:var(--txt2)}
+.sidebar .sitem-info span{color:var(--txt)}
+.sidebar .sitem-info b{font-weight:400;white-space:nowrap}
+.sidebar .sitem-info i{font-style:italic}
+.sidebar .sitem-info sup{font-size:7.5px;letter-spacing:.01em}
 .lines{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:14px;margin-bottom:22px}
 .line{display:flex;flex-direction:column;background:var(--surf);border:1px solid var(--bdr2);
   border-radius:var(--r);overflow:hidden;transition:.2s}
@@ -76,9 +81,9 @@
     <a class="sitem" href="ultrastructure.html">⚡ 3 · Ultrastructure</a>
 
     <div class="ssec">Mouse lines</div>
-    <div class="sitem-info">EGFP-CreERT2 <span>JAX 038934</span></div>
-    <div class="sitem-info">Htr2a-Cre <span>JAX 038935</span></div>
-    <div class="sitem-info">A242S-EGFP-Cre <span>JAX 038936</span></div>
+    <div class="sitem-info"><b><i>Htr2a</i><sup>EGFP-CreERT2</sup></b> <span>JAX 038934</span></div>
+    <div class="sitem-info"><b><i>Htr2a</i><sup>Cre</sup></b> <span>JAX 038935</span></div>
+    <div class="sitem-info"><b><i>Htr2a</i><sup>A242S-EGFP-Cre</sup></b> <span>JAX 038936</span></div>
 
     <div class="spacer"></div>
   </aside>
